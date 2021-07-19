@@ -1,0 +1,23 @@
+{
+	"name": "forkify",
+	"version": "1.0.0",
+	"description": "Recipe app",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "parcel index.html",
+		"build": "parcel build index.html"
+	},
+	"author": "Vladislav Usachev",
+	"license": "ISC",
+	"devDependencies": {
+		"@parcel/transformer-image": "^2.0.0-nightly.2398",
+		"@parcel/transformer-sass": "^2.0.0-nightly.776",
+		"parcel": "^2.0.0-nightly.774",
+		"sass": "^1.35.2"
+	},
+	"dependencies": {
+		"core-js": "^3.15.2",
+		"regenerator-runtime": "^0.13.7"
+	}
+}
