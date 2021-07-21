@@ -5,8 +5,6 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import recipeView from './view/recipeView.js';
 
-// https://forkify-api.herokuapp.com/v2
-
 ///////////////////////////////////////
 
 const controlRecipes = async function () {
