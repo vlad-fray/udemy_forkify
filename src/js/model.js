@@ -3,6 +3,10 @@ import { getJSON } from './helpers';
 
 export const state = {
 	recipe: {},
+	search: {
+		query: '',
+		results: [],
+	},
 };
 
 export const loadRecipe = async function (id) {
@@ -21,6 +25,26 @@ export const loadRecipe = async function (id) {
 			servings: recipe.servings,
 			cookingTime: recipe.cooking_time,
 		};
+	} catch (err) {
+		throw err;
+	}
+};
+
+export const loadSearchResults = async function (query) {
+	try {
+		state.search.query = query;
+		const data = await getJSON(
+			`${API_URL}?search=${query}&key=${API_KEY}`
+		);
+
+		state.search.results = data.data.recipes.map((recipe) => {
+			return {
+				id: recipe.id,
+				title: recipe.title,
+				publisher: recipe.publisher,
+				imageUrl: recipe.image_url,
+			};
+		});
 	} catch (err) {
 		throw err;
 	}
