@@ -4,3 +4,5 @@ export const API_URL =
 export const API_KEY = '520756b4-44fd-4524-8cc4-ba772ee185af';
 
 export const TIMEOUT_SEC = 10;
+
+export const RES_PER_PAGE = 8;

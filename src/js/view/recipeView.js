@@ -130,11 +130,3 @@ class RecipeView extends View {
 }
 
 export default new RecipeView();
-
-{
-	/* <div class="recipe__user-generated">
-                <svg>
-                <use href="${icons}#icon-user"></use>
-                </svg>
-            </div> */
-}

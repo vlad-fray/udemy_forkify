@@ -17,7 +17,7 @@ class ResultsView extends View {
                     <img src="${recipe.imageUrl}" alt="${recipe.title}" crossorigin/>
                 </figure>
                 <div class="preview__data">
-                    <h4 class="preview__title">Pasta with Tomato Cream ...</h4>
+                    <h4 class="preview__title">${recipe.title}</h4>
                     <p class="preview__publisher">${recipe.title}</p>
                     <div class="preview__user-generated">
                     <svg>
