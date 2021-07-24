@@ -1,7 +1,9 @@
 import View from './View.js';
+import icons from 'url:../../img/icons.svg';
 
 class AddRecipeView extends View {
 	_parentEl = document.querySelector('.upload');
+	_message = 'Recipe was successfully uploaded';
 
 	_window = document.querySelector('.add-recipe-window');
 	_overlay = document.querySelector('.overlay');
@@ -13,14 +15,14 @@ class AddRecipeView extends View {
 		this._addHandlerModalWindow();
 	}
 
-	_toggleWindow() {
+	toggleWindow() {
 		this._overlay.classList.toggle('hidden');
 		this._window.classList.toggle('hidden');
 	}
 
 	_addHandlerModalWindow() {
 		[this._overlay, this._btnOpen, this._btnClose].forEach((el) => {
-			el.addEventListener('click', this._toggleWindow.bind(this));
+			el.addEventListener('click', this.toggleWindow.bind(this));
 		});
 	}
 
@@ -29,12 +31,24 @@ class AddRecipeView extends View {
 			e.preventDefault();
 			const dataArr = [...new FormData(this)];
 			const data = Object.fromEntries(dataArr);
-			console.log(data);
-			handler();
+			handler(data);
 		});
 	}
 
-	_generateMarkup() {}
+	renderMessage(message = this._message) {
+		const markup = `
+        <div class="message">
+            <div>
+              <svg>
+                <use href="${icons}#icon-smile"></use>
+              </svg>
+            </div>
+            <p>${message}</p>
+        </div>
+        `;
+		this._clear();
+		this._parentEl.insertAdjacentHTML('afterbegin', markup);
+	}
 }
 
 export default new AddRecipeView();
