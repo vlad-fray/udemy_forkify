@@ -1,5 +1,5 @@
 import { API_KEY, API_URL, RES_PER_PAGE } from './config';
-import { getJSON, sendJSON } from './helpers';
+import { getJSON, sendJSON, AJAX } from './helpers';
 
 export const state = {
 	recipe: {},
@@ -30,7 +30,7 @@ const createRecipeObject = function (data) {
 export const loadRecipe = async function (id) {
 	try {
 		// Loading recipe
-		const data = await getJSON(`${API_URL}/${id}?key=${API_KEY}`);
+		const data = await AJAX(`${API_URL}/${id}?key=${API_KEY}`);
 
 		state.recipe = createRecipeObject(data);
 
@@ -45,7 +45,7 @@ export const loadRecipe = async function (id) {
 export const loadSearchResults = async function (query) {
 	try {
 		state.search.query = query;
-		const data = await getJSON(
+		const data = await AJAX(
 			`${API_URL}?search=${query}&key=${API_KEY}`
 		);
 
@@ -55,6 +55,7 @@ export const loadSearchResults = async function (query) {
 				title: recipe.title,
 				publisher: recipe.publisher,
 				imageUrl: recipe.image_url,
+				...(recipe.key && { key: recipe.key }),
 			};
 		});
 	} catch (err) {
@@ -146,7 +147,7 @@ export const uploadRecipe = async function (newRecipe) {
 			ingredients,
 		};
 
-		const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe);
+		const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe);
 
 		state.recipe = createRecipeObject(data);
 

@@ -15,15 +15,21 @@ class AddRecipeView extends View {
 		this._addHandlerModalWindow();
 	}
 
-	toggleWindow() {
-		this._overlay.classList.toggle('hidden');
-		this._window.classList.toggle('hidden');
+	closeWindow() {
+		this._overlay.classList.add('hidden');
+		this._window.classList.add('hidden');
+	}
+
+	openWindow() {
+		this._overlay.classList.remove('hidden');
+		this._window.classList.remove('hidden');
 	}
 
 	_addHandlerModalWindow() {
-		[this._overlay, this._btnOpen, this._btnClose].forEach((el) => {
-			el.addEventListener('click', this.toggleWindow.bind(this));
+		[this._overlay, this._btnClose].forEach((el) => {
+			el.addEventListener('click', () => this.closeWindow());
 		});
+		this._btnOpen.addEventListener('click', () => this.openWindow());
 	}
 
 	addHandlerUpload(handler) {
