@@ -1,38 +1,30 @@
-import View from './view';
-import icons from 'url:../../img/icons.svg';
+import View from './View.js';
 
-class PreviewView extends View {
+export default class PreviewView extends View {
 	_parentEl = '';
-
 	_generateMarkup() {
+		return this._data.map(this._generateMarkupPreview).join('');
+	}
+
+	_generateMarkupPreview(recipe) {
 		const id = window.location.hash.slice(1);
 
 		return `
-        <li class="preview">
-            <a class="preview__link ${
-							this._data.id === id ? 'preview__link--active' : ''
-						}" href="#${this._data.id}">
-            <figure class="preview__fig">
-                <img src="${this._data.imageUrl}" alt="${
-			this._data.title
+    <li class="preview">
+      <a class="preview__link ${
+				recipe.id === id ? 'preview__link--active' : ''
+			}" href="#${recipe.id}">
+        <figure class="preview__fig">
+          <img src="${recipe.imageUrl}" alt="${
+			recipe.title
 		}" crossorigin/>
-            </figure>
-            <div class="preview__data">
-                <h4 class="preview__title">${this._data.title}</h4>
-                <p class="preview__publisher">${this._data.title}</p>
-            </div>
-            </a>
-        </li>
-        `;
+        </figure>
+        <div class="preview__data">
+          <h4 class="preview__title">${recipe.title}</h4>
+          <p class="preview__publisher">${recipe.publisher}</p>
+        </div>
+      </a>
+    </li>
+  `;
 	}
 }
-
-export default new PreviewView();
-
-/* 
-<div class="preview__user-generated">
-                <svg>
-                    <use href="${icons}#icon-user"></use>
-                </svg>
-                </div>
- */
