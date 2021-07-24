@@ -99,6 +99,6 @@ const init = function () {
 	recipeView.addHandlerBookmark(controlAddBookmark);
 	searchView.addHandlerSearch(controlSearchResults);
 	paginationView.addHandlerClick(controlPagination);
-	synchronizeBookmarks();
+	bookmarksView.addHandlerRender(synchronizeBookmarks);
 };
 init();
